@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provider Enrollment | Core Ascent Finance</title>
+    <meta name="description" content="Enroll your practice in Core Ascent's patient and consumer financing platform. One application connects your patients with multiple lenders including CareCredit.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="https://coreascent.net/favicon.png">
+
+    <!-- Plausible Analytics (coreascent.finance) -->
+    <script async src="https://plausible.io/js/pa-m44MWwAUUzF6OAhWXq1yj.js"></script>
+    <script>
+      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+      plausible.init()
+    </script>
+
+    <style>
+        :root {
+            --navy: #183459;
+            --navy-dark: #0f2340;
+            --gold: #CB9F3C;
+            --gold-dark: #b08a2f;
+            --gold-light: #d9b35a;
+            --gold-glow: rgba(203,159,60,0.15);
+            --gray: #7B7F7E;
+            --gray-light: #b0b3b2;
+            --teal: #0D9488;
+            --teal-dark: #0f766e;
+            --off-white: #f8f9fa;
+            --white: #ffffff;
+            --border: #d1d5db;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--navy);
+            line-height: 1.6;
+            background: var(--off-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+        }
+        .header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+        .logo-area img {
+            height: 52px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-text .brand {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        .logo-text .tagline {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+        .header-contact {
+            text-align: right;
+        }
+        .header-contact a {
+            color: var(--gold-light);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .header-contact .subtext {
+            font-size: 11px;
+            color: var(--gray-light);
+            margin-top: 2px;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #1e4a7a 100%);
+            padding: 40px 24px 36px;
+            text-align: center;
+            position: relative;
+        }
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 50%, rgba(203,159,60,0.06) 0%, transparent 70%);
+        }
+        .hero-banner h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        .hero-banner p {
+            font-size: 15px;
+            color: var(--gray-light);
+            margin-top: 10px;
+            position: relative;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Steps indicator */
+        .steps-bar {
+            max-width: 500px;
+            margin: 24px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .step-ind {
+            display: flex;
+            align-items: center;
+        }
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            flex-shrink: 0;
+            transition: all 0.4s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: transparent;
+            color: rgba(255,255,255,0.5);
+        }
+        .step-circle.active {
+            border-color: var(--gold);
+            background: var(--gold);
+            color: var(--white);
+            box-shadow: 0 0 0 4px var(--gold-glow);
+        }
+        .step-circle.completed {
+            border-color: var(--teal);
+            background: var(--teal);
+            color: var(--white);
+        }
+        .step-line {
+            width: 80px;
+            height: 2px;
+            background: rgba(255,255,255,0.2);
+            margin: 0 12px;
+            transition: background 0.4s ease;
+        }
+        .step-line.completed {
+            background: var(--teal);
+        }
+        .step-labels {
+            max-width: 500px;
+            margin: 8px auto 0;
+            display: flex;
+            justify-content: center;
+            gap: 92px;
+        }
+        .step-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            text-align: center;
+            transition: color 0.3s;
+        }
+        .step-label.active {
+            color: var(--gold);
+        }
+
+        /* Form Container */
+        .form-container {
+            max-width: 720px;
+            margin: 32px auto 48px;
+            padding: 0 24px;
+            width: 100%;
+        }
+        .form-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 36px 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        /* Step panels */
+        .step-panel { display: none; }
+        .step-panel.active { display: block; animation: fadeIn 0.35s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        .panel-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+        .panel-subtitle {
+            font-size: 13px;
+            color: var(--gray);
+            margin-bottom: 28px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .form-row.full { grid-template-columns: 1fr; }
+
+        .field { display: flex; flex-direction: column; }
+        .field label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        .field label .req { color: var(--gold); margin-left: 2px; }
+        .field input, .field select {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 11px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            background: var(--white);
+            color: #1a1a2e;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+        .field input:focus, .field select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-glow);
+        }
+        .field input::placeholder { color: var(--gray-light); font-weight: 400; }
+        .field select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237B7F7E' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+        }
+        .field .hint { font-size: 11px; color: var(--gray); margin-top: 4px; }
+        .field.error input, .field.error select { border-color: #dc2626; }
+
+        .btn {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            letter-spacing: 0.3px;
+        }
+        .btn-primary {
+            background: var(--gold);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: var(--gold-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(203,159,60,0.3);
+        }
+        .btn-primary:disabled {
+            background: var(--gray-light);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .info-box {
+            margin-top: 24px;
+            padding: 16px 20px;
+            background: #f0faf9;
+            border: 1px solid rgba(13,148,136,0.2);
+            border-radius: 8px;
+            font-size: 13px;
+            color: #444;
+            line-height: 1.6;
+        }
+        .info-box strong { color: var(--teal); }
+
+        /* JotForm container */
+        .jotform-wrap {
+            margin-top: 8px;
+        }
+        .jotform-wrap iframe {
+            width: 100%;
+            min-height: 3200px;
+            border: none;
+            border-radius: 8px;
+        }
+        .jotform-intro {
+            margin-bottom: 20px;
+            padding: 16px 20px;
+            background: #fffbf0;
+            border: 1px solid rgba(203,159,60,0.25);
+            border-radius: 8px;
+            font-size: 13px;
+            color: #444;
+            line-height: 1.6;
+        }
+        .jotform-intro strong { color: var(--navy); }
+
+        /* Footer */
+        .footer {
+            margin-top: auto;
+            background: var(--navy);
+            padding: 20px 24px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+        }
+        .footer a {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .header-inner { flex-direction: column; gap: 12px; text-align: center; }
+            .header-contact { text-align: center; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-card { padding: 24px 20px; }
+            .hero-banner h1 { font-size: 22px; }
+            .step-labels { gap: 60px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-inner">
+            <a href="https://coreascent.net" class="logo-area">
+                <img src="https://coreascent.net/logo.png" alt="Core Ascent">
+                <div class="logo-text">
+                    <span class="brand">Core Ascent</span>
+                    <span class="tagline">Start Your Ascent</span>
+                </div>
+            </a>
+            <div class="header-contact">
+                <a href="tel:+18557142673">(855) 714-CORE</a>
+                <div class="subtext">info@coreascent.net</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-banner">
+        <h1>Provider Enrollment</h1>
+        <p>Get your practice set up with Core Ascent's multi-lender financing platform. Start by confirming your practice and representative information below.</p>
+        <div class="steps-bar">
+            <div class="step-ind">
+                <div class="step-circle active" id="circle-1">1</div>
+            </div>
+            <div class="step-line" id="line-1"></div>
+            <div class="step-ind">
+                <div class="step-circle" id="circle-2">2</div>
+            </div>
+        </div>
+        <div class="step-labels">
+            <div class="step-label active" id="label-1">Your Info</div>
+            <div class="step-label" id="label-2">Enrollment</div>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <div class="form-card">
+
+            <!-- STEP 1: Core Ascent Attribution -->
+            <div class="step-panel active" id="panel-1">
+                <div class="panel-title">Practice &amp; Representative Info</div>
+                <div class="panel-subtitle">This information helps us track your enrollment and connect you with your Core Ascent representative.</div>
+
+                <form id="attributionForm" action="https://formspree.io/f/PLACEHOLDER" method="POST">
+                    <input type="hidden" name="_subject" value="Provider Enrollment - New Practice">
+
+                    <div class="form-row">
+                        <div class="field">
+                            <label>Practice / Business Name <span class="req">*</span></label>
+                            <input type="text" name="practice_name" required placeholder="Smile Bright Dental">
+                        </div>
+                        <div class="field">
+                            <label>Business Type <span class="req">*</span></label>
+                            <select name="business_type" required>
+                                <option value="">Select...</option>
+                                <option value="Dental">Dental</option>
+                                <option value="Veterinary">Veterinary</option>
+                                <option value="MedSpa / Aesthetics">MedSpa / Aesthetics</option>
+                                <option value="Plastic Surgery">Plastic Surgery</option>
+                                <option value="Chiropractic">Chiropractic</option>
+                                <option value="IVF / Fertility">IVF / Fertility</option>
+                                <option value="Vision / LASIK">Vision / LASIK</option>
+                                <option value="Auto Repair">Auto Repair</option>
+                                <option value="Tattoo / Body Art">Tattoo / Body Art</option>
+                                <option value="Adoption Services">Adoption Services</option>
+                                <option value="Home Services">Home Services</option>
+                                <option value="Wellness">Wellness</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="field">
+                            <label>Contact Name <span class="req">*</span></label>
+                            <input type="text" name="contact_name" required placeholder="Dr. Sarah Mitchell">
+                        </div>
+                        <div class="field">
+                            <label>Contact Email <span class="req">*</span></label>
+                            <input type="email" name="contact_email" required placeholder="sarah@smilebrightdental.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="field">
+                            <label>Contact Phone <span class="req">*</span></label>
+                            <input type="tel" name="contact_phone" required placeholder="(555) 123-4567">
+                        </div>
+                        <div class="field">
+                            <label>Sales Rep Name / ID <span class="req">*</span></label>
+                            <input type="text" name="sales_rep" required placeholder="Rep name or ID number">
+                            <span class="hint">The Core Ascent representative who referred you</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="continueBtn">Continue to Enrollment</button>
+                </form>
+
+                <div class="info-box">
+                    <strong>What happens next?</strong> After confirming your info, you'll complete the full enrollment form with our financing platform partner. This includes selecting which lender programs your practice wants to offer. Your office manager may need to complete individual lender enrollments — if you already use CareCredit, that lender is ready on day one.
+                </div>
+            </div>
+
+            <!-- STEP 2: JotForm Enrollment -->
+            <div class="step-panel" id="panel-2">
+                <div class="panel-title">Complete Your Enrollment</div>
+                <div class="panel-subtitle">Fill out the enrollment form below to get your practice set up with our financing platform and lender partners.</div>
+
+                <div class="jotform-intro">
+                    <strong>Enrolling: <span id="practice-display"></span></strong><br>
+                    Rep: <span id="rep-display"></span> &nbsp;|&nbsp; Contact: <span id="contact-display"></span>
+                </div>
+
+                <div class="jotform-wrap">
+                    <iframe
+                        id="JotFormIFrame-251385242942155"
+                        title="Enrollment Agreement"
+                        allowtransparency="true"
+                        allow="geolocation; microphone; camera; fullscreen"
+                        src="https://form.jotform.com/251385242942155"
+                        scrolling="yes"
+                    ></iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 Core Ascent L.L.C. All rights reserved. &nbsp;|&nbsp; <a href="https://coreascent.net">coreascent.net</a> &nbsp;|&nbsp; <a href="tel:+18557142673">(855) 714-CORE</a></p>
+        <p style="margin-top:6px;font-size:11px;">Core Ascent L.L.C. is not a lender. Financing is provided by our lending partners. All enrollments are subject to lender approval.</p>
+    </div>
+
+    <script>
+        // Phone formatting
+        var phoneInput = document.querySelector('input[name="contact_phone"]');
+        if (phoneInput) phoneInput.addEventListener('input', function(e) {
+            var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+
+        // Form submission → advance to step 2
+        document.getElementById('attributionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var btn = document.getElementById('continueBtn');
+            btn.disabled = true;
+            btn.textContent = 'Submitting...';
+
+            // Capture values for display
+            var practiceName = document.querySelector('input[name="practice_name"]').value;
+            var repName = document.querySelector('input[name="sales_rep"]').value;
+            var contactName = document.querySelector('input[name="contact_name"]').value;
+
+            // Submit to Formspree
+            var formData = new FormData(this);
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(function() {
+                advanceToStep2(practiceName, repName, contactName);
+            }).catch(function() {
+                // Even if Formspree fails, proceed to enrollment
+                advanceToStep2(practiceName, repName, contactName);
+            });
+        });
+
+        function advanceToStep2(practice, rep, contact) {
+            // Update step indicators
+            document.getElementById('circle-1').classList.remove('active');
+            document.getElementById('circle-1').classList.add('completed');
+            document.getElementById('circle-1').innerHTML = '&#10003;';
+            document.getElementById('line-1').classList.add('completed');
+            document.getElementById('circle-2').classList.add('active');
+            document.getElementById('label-1').classList.remove('active');
+            document.getElementById('label-2').classList.add('active');
+
+            // Display captured info
+            document.getElementById('practice-display').textContent = practice;
+            document.getElementById('rep-display').textContent = rep;
+            document.getElementById('contact-display').textContent = contact;
+
+            // Switch panels
+            document.getElementById('panel-1').classList.remove('active');
+            document.getElementById('panel-2').classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
