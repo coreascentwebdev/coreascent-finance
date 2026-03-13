@@ -3,7 +3,7 @@
   "redirects": [
     {
       "source": "/:repId(NCR\\d+)",
-      "destination": "https://coreascent.health/enroll/rxprime?rep=:repId",
+      "destination": "/enroll/rxprime?rep=:repId",
       "permanent": false
     }
   ]
