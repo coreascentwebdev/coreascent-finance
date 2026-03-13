@@ -1,3 +1,10 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/:repId(NCR\\d+)",
+      "destination": "https://coreascent.health/enroll/rxprime?rep=:repId",
+      "permanent": false
+    }
+  ]
 }
